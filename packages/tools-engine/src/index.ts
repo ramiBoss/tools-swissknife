@@ -1,1 +1,1 @@
-export {upperCase} from './api/caseConvertor';
+export { upperCase, lowerCase } from './api/caseConvertor';

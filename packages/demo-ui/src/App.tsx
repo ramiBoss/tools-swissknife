@@ -1,6 +1,8 @@
 import './App.css';
 import React, { useState }  from 'react';
-import { upperCase } from 'tools-engine';
+import { upperCase, lowerCase } from 'tools-engine';
+import { caseConvert } from './library/enums';
+import { Casing } from './library/types';
 
 function App() {
   const [textArea, setTextArea] = useState<string>("");
@@ -9,8 +11,17 @@ function App() {
   setTextArea(event.target.value)
   };
 
-  const handleCaseChange = (buttonIndex: number) => {
-    setTextArea(upperCase(textArea));
+  const handleCaseChange = (caseOption: Casing ) => {
+    switch(caseOption){
+      case caseConvert.UPPERCASE: 
+        setTextArea(upperCase(textArea));
+        break;
+      case caseConvert.LOWERCASE:
+        setTextArea(lowerCase(textArea));
+        break;
+      default:
+        setTextArea(upperCase(textArea));    
+    }
   };
     return (
       <div className='my-component'>
@@ -22,8 +33,8 @@ function App() {
         cols={50}
       />
       <div className="button-container">
-        <button className="button" onClick={() => handleCaseChange(1)}>UPPERCASE</button>
-        <button className="button" onClick={() => handleCaseChange(2)}>LOWERCASE</button>
+        <button className="button" onClick={() => handleCaseChange(caseConvert.UPPERCASE)}>UPPERCASE</button>
+        <button className="button" onClick={() => handleCaseChange(caseConvert.LOWERCASE)}>LOWERCASE</button>
       </div>
     </div>
     );
